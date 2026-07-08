@@ -1,123 +1,81 @@
 # RSI Screener
 
-**Live RSI for the entire Binance spot market - the whole market at one glance.**
-
-A production SaaS that computes the Relative Strength Index for 300+ Binance
-spot pairs across 15 timeframes, server-side, and streams it to a fast, live
-grid. Spot oversold bounces and overbought tops the moment they form, on any
-timeframe and any device.
+> Public showcase for a private production SaaS. No source code is published here.
 
 <p align="center">
-  <img src="assets/hero.png" alt="RSI Screener landing" width="100%">
+  <img src="assets/hero-real.png" alt="RSI Screener landing page showing live RSI tiles" width="100%">
 </p>
+
+## One Screen For The Whole Crypto Market
+
+RSI Screener scans the Binance spot market and turns hundreds of RSI readings
+into one fast visual grid. It is built for the moment when a trader wants to
+know, immediately, which pairs are overheated, washed out, or moving together
+across timeframes.
 
 <p align="center">
-  <a href="#"><strong>Live demo &rarr;</strong></a>
-  &nbsp;&middot;&nbsp; First month free, no card required
+  <img src="assets/product-zoom.gif" alt="Animated zoom through the RSI Screener demo UI" width="100%">
 </p>
 
-> This repository is a **showcase**. It documents the product and how it's built.
-> The application source is kept in a private repository.
+## What It Does
 
----
-
-## The Problem
-
-Traders watching for RSI extremes normally flip through charts one symbol at a
-time, or pay for heavyweight terminals. There was no fast, focused way to see
-*the whole market's* RSI at once, on the timeframe you care about, from a phone.
-
-RSI Screener is that one screen: a live wall of every liquid Binance pair, each
-with its current RSI and a mini-chart, filterable to oversold or overbought in a
-single tap - then a full charting view to confirm the setup and mark it up.
-
----
-
-## Features
-
-| | |
+| Product surface | Built behavior |
 |---|---|
-| **Live RSI on 300+ pairs** | Market-cap-ranked Binance spot pairs, computed on the server so the client never touches an exchange rate limit. |
-| **15 timeframes** | From 1-minute scalps to monthly swings. Switching is instant; the grid fills progressively as data lands. |
-| **Full RSI charts** | Candlesticks with an RSI pane, moving average, zoom and pan - updating live while open. |
-| **Drawing tools** | Trendlines with drag handles, undo/redo, a colour palette, and one-tap PNG export. Works with touch. |
-| **Custom RSI settings** | Period and oversold/overbought thresholds per user, synced to the account. |
-| **Installable PWA** | Add to home screen, fast shell load, and a graceful offline screen. |
-| **Works everywhere** | Fully responsive - the same tool on phone, tablet and desktop, with tiny payloads for mobile data. |
+| **300+ pair grid** | Every tile shows a symbol and mini RSI curve, so the market can be scanned like a heatmap. |
+| **Live Binance mode** | Public demo can switch from sample data to live Binance-backed RSI data. |
+| **15 timeframe engine** | The private tool tracks short scalps through monthly swings. |
+| **Chart workflow** | Open a coin, inspect RSI, draw trendlines, undo/redo, and export the setup. |
+| **Account system** | Email OTP, JWT sessions, user settings, subscription state, and protected tool access. |
+| **Billing flow** | Paddle checkout and webhook reconciliation for paid access. |
 
-<p align="center">
-  <img src="assets/screener.png" alt="The live screener grid" width="100%">
-</p>
-
----
-
-## How It's Built
-
-A single, always-on Next.js server - no serverless cold starts - with a
-background market engine feeding a live UI.
-
-**Frontend**
-
-- **Next.js 16** (App Router, React Server Components) + **TypeScript**
-- **Tailwind CSS v4** and **shadcn/ui** for the component system
-- A **custom canvas charting engine** (candles, RSI, drawing overlay, PNG export) - no charting library
-- **PWA**: service worker with a cache-first app shell, offline fallback, and installability
-
-**Backend & Data**
-
-- A **server-side market engine** that polls the public Binance API, computes RSI
-  (Wilder's smoothing) for every tracked pair across all timeframes, and holds a
-  **warm in-memory cache** aligned to candle closes - so page loads are instant and
-  the exchange is hit once, centrally, instead of once per visitor
-- **Supabase (Postgres)** for users, subscriptions and settings
-- **JWT** sessions (HS256) with **email OTP** verification and password reset
-
-**Payments**
-
-- **Paddle** as merchant of record (card & PayPal), with an inline one-page checkout
-- **Webhook-drift reconciliation**: subscription state is treated as source-of-truth
-  in Paddle and *self-heals* on read - a missed webhook can never permanently lock out
-  a paying customer or leave a cancelled one with access
-
-**Quality**
-
-- **Vitest** unit suite covering RSI math, webhook signature verification, rate
-  limiting and input validation
-- Rate limiting, per-user in-memory locks against race conditions, and strict input
-  validation on every route
-
----
-
-## Engineering Details
-
-- **One exchange connection for everyone.** Instead of each browser calling Binance,
-  the server maintains the market state and every visitor reads a small pre-computed
-  snapshot. It scales with a warm cache rather than with user count.
-- **Self-healing billing.** Webhooks fail - tunnels die, servers restart, deliveries
-  exhaust their retries. Rather than trusting the webhook stream alone, the app
-  reconciles each subscription against Paddle's live state when it's read, so the
-  database can drift and still recover on its own.
-- **Progressive, never-blank UI.** The grid renders immediately with whatever data
-  is warm and fills in the rest, so there's no spinner wall on a 300-tile screen.
-
----
-
-## Screenshots
+## Real UI Zooms
 
 <table>
   <tr>
-    <td width="60%"><img src="assets/pricing.png" alt="Pricing"></td>
-    <td width="40%"><img src="assets/mobile.png" alt="Mobile screener"></td>
+    <td width="50%"><img src="assets/zoom-toolbar.png" alt="Demo toolbar with sample/live toggle and RSI filters"></td>
+    <td width="50%"><img src="assets/zoom-tiles.png" alt="Close crop of RSI tiles and mini charts"></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="assets/mobile-real.png" alt="Mobile demo view"></td>
+    <td width="50%"><img src="assets/zoom-pricing.png" alt="Pricing page crop"></td>
   </tr>
 </table>
 
+## Architecture
+
+```mermaid
+flowchart LR
+  Binance[Binance public candles] --> Engine[Server-side market engine]
+  Engine --> Cache[Warm in-memory RSI cache]
+  Cache --> Grid[Live RSI grid]
+  Grid --> Chart[Chart + drawing workflow]
+
+  Supabase[(Supabase Postgres)] --> Auth[Email OTP + JWT sessions]
+  Auth --> Grid
+
+  Paddle[Paddle checkout] --> Webhooks[Webhook handlers]
+  Webhooks --> Supabase
+  Paddle --> Reconcile[Subscription reconciliation]
+  Reconcile --> Supabase
+```
+
+The important decision: browsers do not hammer Binance. The server computes and
+holds market state once, then the UI reads small snapshots. That keeps page loads
+fast and avoids scaling exchange requests with visitor count.
+
+## Engineering Highlights
+
+- **Warm snapshot loading:** the grid renders immediately from available market state and fills progressively.
+- **RSI computation server-side:** RSI is computed centrally using Wilder-style smoothing.
+- **Protected SaaS flow:** auth, settings, payments, subscription checks, and paywall states are wired into the product.
+- **Responsive PWA shell:** the same scanner is usable on desktop and phone.
+- **Real chart tooling:** chart modal supports zoom/pan, drawing overlays, undo/redo, and PNG export in the private app.
+
+## Stack
+
+`Next.js 16` &middot; `React` &middot; `TypeScript` &middot; `Tailwind CSS v4` &middot; `Supabase`
+&middot; `Paddle` &middot; `JWT` &middot; `Vitest` &middot; `PWA` &middot; `Playwright`
+
 ---
 
-## Tech Stack
-
-`Next.js 16` &middot; `React` &middot; `TypeScript` &middot; `Tailwind CSS v4` &middot; `shadcn/ui`
-&middot; `Supabase / Postgres` &middot; `Paddle` &middot; `JWT` &middot; `Vitest` &middot; `PWA`
-
----
-
-<p align="center"><sub>Built and maintained by a self-taught developer. Source available on request.</sub></p>
+Built as an end-to-end SaaS: product UI, market data engine, auth, billing, and deployment workflow.
