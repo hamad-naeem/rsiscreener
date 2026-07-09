@@ -1,587 +1,347 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RSI Screener - Product Showcase</title>
-    <meta name="description" content="A visual showcase for RSI Screener, a private SaaS crypto RSI scanner.">
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #120c0a;
-        --bg-2: #1b100d;
-        --panel: #241711;
-        --panel-2: #2c1b14;
-        --line: #4b3026;
-        --text: #fff1e7;
-        --muted: #b99a8a;
-        --soft: #7c5a4d;
-        --accent: #d46a47;
-        --accent-2: #ff8b5f;
-        --red: #f05248;
-        --shadow: rgba(0, 0, 0, .45);
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSI Screener — live crypto RSI intelligence</title>
+<meta name="description" content="A production SaaS that turns the whole Binance spot market into one live RSI wall. Real logged-in product showcase.">
+<style>
+  :root{
+    --bg:#151110; --bg2:#191411; --card:#1e1815; --card2:#241c17;
+    --text:#f4f3ee; --muted:#b1ada1; --dim:#8a8177;
+    --primary:#c15f3c; --primary2:#e0855c; --border:#322921; --accent:#3b2318;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(60vw 50vh at 78% -5%, rgba(193,95,60,.20), transparent 60%),
+      radial-gradient(50vw 40vh at 10% 8%, rgba(224,133,92,.08), transparent 55%),
+      radial-gradient(70vw 60vh at 50% 115%, rgba(193,95,60,.10), transparent 60%);
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .eyebrow{font-size:11px; text-transform:uppercase; letter-spacing:.28em; color:var(--primary2); font-weight:700}
+  .pill{display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border:1px solid var(--border);
+    border-radius:999px; font-size:12px; color:var(--muted); background:rgba(255,255,255,.02)}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(193,95,60,.55)}70%{box-shadow:0 0 0 8px rgba(193,95,60,0)}100%{box-shadow:0 0 0 0 rgba(193,95,60,0)}}
 
-      * {
-        box-sizing: border-box;
-      }
+  nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(12px);
+    background:rgba(21,17,16,.72); border-bottom:1px solid var(--border)}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:60px}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.16em; font-size:13px}
+  .logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--primary),var(--primary2));
+    display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff}
+  .navlinks{display:flex; align-items:center; gap:26px; font-size:13px; color:var(--muted)}
+  .navlinks a:hover{color:var(--text)}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border-radius:9px; font-size:13px;
+    font-weight:600; border:1px solid var(--border); transition:.2s; cursor:pointer}
+  .btn.primary{background:linear-gradient(135deg,var(--primary),#a94f30); border-color:transparent; color:#fff;
+    box-shadow:0 6px 24px -8px rgba(193,95,60,.7)}
+  .btn.primary:hover{transform:translateY(-1px); box-shadow:0 10px 30px -8px rgba(193,95,60,.85)}
+  .btn.ghost:hover{border-color:var(--primary); color:var(--text)}
+  @media(max-width:720px){.navlinks .hidesm{display:none}}
 
-      html {
-        scroll-behavior: smooth;
-      }
+  header.hero{padding:72px 0 40px}
+  .hero-grid{display:grid; grid-template-columns:1fr 1.08fr; gap:48px; align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr; gap:36px}}
+  h1{font-size:clamp(38px,5.4vw,62px); line-height:1.03; letter-spacing:-.02em; font-weight:800; margin:18px 0 0}
+  h1 .accent{color:var(--primary2)}
+  .lede{color:var(--muted); font-size:clamp(15px,1.6vw,18px); max-width:30em; margin-top:18px}
+  .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px}
+  .hero-note{margin-top:16px; font-size:12px; color:var(--dim)}
 
-      body {
-        margin: 0;
-        background:
-          radial-gradient(circle at 20% 0%, rgba(212, 106, 71, .18), transparent 34rem),
-          radial-gradient(circle at 100% 30%, rgba(255, 139, 95, .09), transparent 30rem),
-          linear-gradient(180deg, #0d0807 0%, var(--bg) 48%, #0c0706 100%);
-        color: var(--text);
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      }
+  .frame{border:1px solid var(--border); border-radius:14px; overflow:hidden; background:var(--card);
+    box-shadow:0 40px 80px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.02)}
+  .frame .bar{display:flex; align-items:center; gap:8px; padding:10px 14px; background:var(--bg2);
+    border-bottom:1px solid var(--border)}
+  .tl{width:11px;height:11px;border-radius:50%}
+  .url{margin-left:12px; font-size:11px; color:var(--dim); background:#120e0d; border:1px solid var(--border);
+    border-radius:7px; padding:4px 12px; letter-spacing:.02em}
+  .frame video, .frame img{display:block; width:100%; height:auto}
+  .hero-stage{position:relative}
+  .hero-float{position:absolute; right:-14px; bottom:-26px; width:46%; border-radius:12px; overflow:hidden;
+    border:1px solid var(--border); box-shadow:0 30px 60px -20px rgba(0,0,0,.85); background:var(--card)}
+  .hero-float img{display:block;width:100%}
+  @media(max-width:560px){.hero-float{display:none}}
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border);
+    border:1px solid var(--border); border-radius:14px; overflow:hidden; margin:72px 0 8px}
+  .stat{background:var(--bg2); padding:22px 20px; text-align:center}
+  .stat b{display:block; font-size:30px; font-weight:800; color:var(--primary2); letter-spacing:-.01em}
+  .stat span{font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--dim)}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
 
-      img {
-        display: block;
-        max-width: 100%;
-      }
+  section{padding:64px 0}
+  .sec-head{max-width:640px; margin-bottom:40px}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px); letter-spacing:-.02em; font-weight:800; margin-top:12px}
+  .sec-head p{color:var(--muted); margin-top:12px}
 
-      .shell {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-      }
+  .scene{display:grid; grid-template-columns:1fr 1.25fr; gap:44px; align-items:center; margin:0 0 56px}
+  .scene.rev{grid-template-columns:1.25fr 1fr}
+  .scene.rev .scopy{order:2}
+  @media(max-width:900px){.scene,.scene.rev{grid-template-columns:1fr; gap:24px}.scene.rev .scopy{order:0}}
+  .scene .num{font-size:12px; font-weight:800; letter-spacing:.2em; color:var(--primary)}
+  .scene h3{font-size:23px; margin:10px 0 10px; letter-spacing:-.01em}
+  .scene p{color:var(--muted); font-size:15px}
+  .scene ul{list-style:none; margin-top:16px; display:flex; flex-wrap:wrap; gap:8px}
+  .scene ul li{font-size:12px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:5px 11px}
 
-      .nav {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        backdrop-filter: blur(18px);
-        background: rgba(18, 12, 10, .72);
-        border-bottom: 1px solid rgba(255, 241, 231, .08);
-      }
+  .phones{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center}
+  @media(max-width:760px){.phones{grid-template-columns:1fr}}
+  .phone{width:270px; margin:0 auto; border:9px solid #0c0a09; border-radius:34px; overflow:hidden;
+    box-shadow:0 40px 70px -25px rgba(0,0,0,.85), 0 0 0 1px var(--border)}
+  .phone video{display:block; width:100%}
 
-      .nav-inner {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-      }
+  .flow{display:flex; align-items:stretch; gap:14px; flex-wrap:wrap}
+  .node{flex:1; min-width:150px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px}
+  .node b{display:block; font-size:14px; margin-bottom:4px}
+  .node span{font-size:12px; color:var(--dim)}
+  .node.key{border-color:rgba(193,95,60,.5); background:linear-gradient(180deg,var(--accent),var(--card))}
+  .flow .arw{align-self:center; color:var(--primary); font-size:18px}
+  @media(max-width:760px){.flow{flex-direction:column}.flow .arw{transform:rotate(90deg)}}
+  .support{display:flex; gap:14px; margin-top:14px; flex-wrap:wrap}
+  .support .node{min-width:220px}
+  .arch-note{color:var(--muted); font-size:14px; margin-top:22px; max-width:60em}
 
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        font-size: 13px;
-        font-weight: 800;
-        letter-spacing: .14em;
-      }
+  .cards{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+  @media(max-width:720px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px}
+  .card h4{font-size:16px; margin-bottom:6px}
+  .card p{color:var(--muted); font-size:14px}
+  .ic{width:38px;height:38px;border-radius:10px;background:var(--accent);display:grid;place-items:center;
+    margin-bottom:14px;color:var(--primary2);font-size:18px}
 
-      .mark {
-        display: grid;
-        place-items: center;
-        width: 28px;
-        height: 28px;
-        border-radius: 7px;
-        background: var(--accent);
-        color: #170b08;
-        letter-spacing: 0;
-      }
+  .stack{display:flex; flex-wrap:wrap; gap:10px}
+  .tech{font-size:13px; color:var(--muted); border:1px solid var(--border); background:var(--card);
+    border-radius:9px; padding:9px 14px; font-weight:600}
 
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        color: var(--muted);
-        font-size: 13px;
-      }
+  footer{border-top:1px solid var(--border); padding:56px 0 60px; margin-top:40px; text-align:center}
+  footer h2{font-size:clamp(24px,3vw,34px); letter-spacing:-.02em; font-weight:800}
+  footer p{color:var(--muted); margin:12px auto 26px; max-width:34em}
+  .fnote{margin-top:34px; font-size:12px; color:var(--dim)}
 
-      .nav-links a:hover {
-        color: var(--text);
-      }
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1; transform:none}
+</style>
+</head>
+<body>
 
-      .hero {
-        min-height: calc(100vh - 64px);
-        display: grid;
-        align-items: center;
-        padding: 70px 0 46px;
-      }
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="logo">R</span> RSI SCREENER</a>
+    <div class="navlinks">
+      <a class="hidesm" href="#reel">Demo reel</a>
+      <a class="hidesm" href="#system">System</a>
+      <a class="hidesm" href="#stack">Stack</a>
+      <a class="btn ghost" href="https://github.com/Hamad12-cmd/rsiscreener" target="_blank" rel="noopener">GitHub &#8599;</a>
+    </div>
+  </div>
+</nav>
 
-      .hero-grid {
-        display: grid;
-        grid-template-columns: .82fr 1.18fr;
-        gap: 42px;
-        align-items: center;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        padding: 8px 12px;
-        border: 1px solid rgba(212, 106, 71, .34);
-        border-radius: 999px;
-        color: var(--accent-2);
-        background: rgba(36, 23, 17, .68);
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-      }
-
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        box-shadow: 0 0 22px rgba(212, 106, 71, .9);
-      }
-
-      h1 {
-        margin: 22px 0 20px;
-        max-width: 650px;
-        font-size: clamp(54px, 8vw, 112px);
-        line-height: .86;
-        letter-spacing: -.07em;
-      }
-
-      .lead {
-        max-width: 580px;
-        margin: 0;
-        color: #d7c2b7;
-        font-size: clamp(18px, 2vw, 24px);
-        line-height: 1.35;
-      }
-
-      .actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 30px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        padding: 0 18px;
-        border-radius: 10px;
-        border: 1px solid var(--line);
-        color: var(--text);
-        background: rgba(36, 23, 17, .82);
-        font-weight: 750;
-      }
-
-      .button.primary {
-        color: #160b08;
-        background: linear-gradient(180deg, #ff9467, var(--accent));
-        border-color: rgba(255, 176, 126, .4);
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
-        margin-top: 38px;
-      }
-
-      .stat {
-        padding: 16px;
-        border: 1px solid rgba(255, 241, 231, .08);
-        border-radius: 14px;
-        background: rgba(36, 23, 17, .62);
-      }
-
-      .stat b {
-        display: block;
-        font-size: 26px;
-        letter-spacing: -.04em;
-      }
-
-      .stat span {
-        display: block;
-        margin-top: 4px;
-        color: var(--muted);
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: .11em;
-      }
-
-      .browser {
-        overflow: hidden;
-        border: 1px solid rgba(255, 241, 231, .12);
-        border-radius: 24px;
-        background: #0f0908;
-        box-shadow: 0 40px 120px var(--shadow);
-      }
-
-      .browser-bar {
-        height: 34px;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        padding: 0 14px;
-        border-bottom: 1px solid rgba(255, 241, 231, .08);
-        background: rgba(20, 12, 10, .95);
-      }
-
-      .browser-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #f05248;
-        box-shadow: 17px 0 #eab65d, 34px 0 #d46a47;
-      }
-
-      .screen {
-        overflow: hidden;
-        background: #120c0a;
-      }
-
-      .screen img {
-        width: 100%;
-      }
-
-      .section {
-        padding: 92px 0;
-        border-top: 1px solid rgba(255, 241, 231, .07);
-      }
-
-      .section-head {
-        display: grid;
-        grid-template-columns: .8fr 1.2fr;
-        gap: 34px;
-        align-items: end;
-        margin-bottom: 26px;
-      }
-
-      .kicker {
-        color: var(--accent-2);
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        font-size: 12px;
-        font-weight: 850;
-        letter-spacing: .15em;
-        text-transform: uppercase;
-      }
-
-      h2 {
-        margin: 9px 0 0;
-        font-size: clamp(34px, 5vw, 64px);
-        line-height: .96;
-        letter-spacing: -.05em;
-      }
-
-      .section-head p,
-      .copy p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.45;
-      }
-
-      .feature {
-        display: grid;
-        grid-template-columns: .92fr 1.08fr;
-        gap: 24px;
-        align-items: stretch;
-      }
-
-      .feature.reverse {
-        grid-template-columns: 1.08fr .92fr;
-      }
-
-      .copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 34px;
-        border: 1px solid rgba(255, 241, 231, .08);
-        border-radius: 24px;
-        background: linear-gradient(180deg, rgba(44, 27, 20, .82), rgba(27, 16, 13, .74));
-      }
-
-      .copy h3 {
-        margin: 0 0 12px;
-        font-size: clamp(28px, 3vw, 44px);
-        line-height: 1;
-        letter-spacing: -.04em;
-      }
-
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 24px;
-      }
-
-      .chip {
-        padding: 8px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(212, 106, 71, .26);
-        color: #f4c0a9;
-        background: rgba(18, 12, 10, .5);
-        font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-        font-size: 11px;
-        font-weight: 800;
-        letter-spacing: .08em;
-        text-transform: uppercase;
-      }
-
-      .media-card {
-        overflow: hidden;
-        border: 1px solid rgba(255, 241, 231, .1);
-        border-radius: 24px;
-        background: var(--panel);
-        box-shadow: 0 28px 90px rgba(0, 0, 0, .38);
-      }
-
-      .media-card img {
-        width: 100%;
-      }
-
-      .phone-wrap {
-        display: grid;
-        grid-template-columns: 430px 1fr;
-        gap: 50px;
-        align-items: center;
-      }
-
-      .phone {
-        width: min(390px, 100%);
-        margin: 0 auto;
-        padding: 10px;
-        border-radius: 30px;
-        background: linear-gradient(180deg, #2b1a14, #100908);
-        box-shadow: 0 32px 90px rgba(0, 0, 0, .48);
-      }
-
-      .phone img {
-        border-radius: 20px;
-      }
-
-      .architecture {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 12px;
-        margin-top: 30px;
-      }
-
-      .node {
-        min-height: 120px;
-        padding: 16px;
-        border: 1px solid rgba(255, 241, 231, .1);
-        border-radius: 18px;
-        background: rgba(36, 23, 17, .74);
-      }
-
-      .node strong {
-        display: block;
-        margin-bottom: 8px;
-      }
-
-      .node span {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.35;
-      }
-
-      .footer {
-        padding: 44px 0 70px;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      @media (max-width: 900px) {
-        .hero-grid,
-        .section-head,
-        .feature,
-        .feature.reverse,
-        .phone-wrap {
-          grid-template-columns: 1fr;
-        }
-
-        .nav-links {
-          display: none;
-        }
-
-        .architecture {
-          grid-template-columns: 1fr;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="nav">
-      <div class="shell nav-inner">
-        <a class="brand" href="#top"><span class="mark">R</span>RSI SCREENER</a>
-        <nav class="nav-links" aria-label="Showcase sections">
-          <a href="#scan">Scan</a>
-          <a href="#filters">Filters</a>
-          <a href="#chart">Chart</a>
-          <a href="#mobile">Mobile</a>
-          <a href="#architecture">Architecture</a>
-          <a href="https://github.com/Hamad12-cmd/rsiscreener">GitHub</a>
-        </nav>
+<a id="top"></a>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span> Live production SaaS · public showcase</span>
+      <h1>The whole market.<br><span class="accent">One glance.</span></h1>
+      <p class="lede">RSI Screener turns the entire Binance spot market into a single live wall of Relative Strength.
+        Hundreds of pairs, fifteen timeframes, computed on the server and streamed to a dense, fast scanner.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#reel">Watch the product &#8595;</a>
+        <a class="btn ghost" href="https://github.com/Hamad12-cmd/rsiscreener" target="_blank" rel="noopener">View on GitHub</a>
       </div>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="shell hero-grid">
-          <div>
-            <div class="eyebrow"><span class="dot"></span> Terracotta tool capture</div>
-            <h1>The whole crypto market. One RSI wall.</h1>
-            <p class="lead">
-              A logged-in SaaS scanner for Binance spot pairs: live RSI tiles,
-              timeframe switching, symbol search, chart drawings, and a mobile-ready PWA surface.
-            </p>
-            <div class="actions">
-              <a class="button primary" href="#scan">Watch the workflow</a>
-              <a class="button" href="https://github.com/Hamad12-cmd/rsiscreener">View repository</a>
-            </div>
-            <div class="stats">
-              <div class="stat"><b>300+</b><span>symbols</span></div>
-              <div class="stat"><b>15</b><span>timeframes</span></div>
-              <div class="stat"><b>Live</b><span>server snapshots</span></div>
-            </div>
-          </div>
-
-          <div class="browser">
-            <div class="browser-bar"><span class="browser-dot"></span></div>
-            <div class="screen"><img src="assets/hero-tool.png" alt="RSI Screener dashboard"></div>
-          </div>
+      <p class="hero-note">Everything below is the real logged-in tool, recorded live. The source stays private.</p>
+    </div>
+    <div class="hero-stage reveal">
+      <div class="frame">
+        <div class="bar">
+          <span class="tl" style="background:#e05a4d"></span>
+          <span class="tl" style="background:#e0a23c"></span>
+          <span class="tl" style="background:#3cc98a"></span>
+          <span class="url">rsiscreener.app / tool</span>
         </div>
-      </section>
+        <video poster="assets/hero-tool.png" autoplay muted loop playsinline><source src="assets/clip-grid.webm" type="video/webm"><source src="assets/clip-grid.mp4" type="video/mp4"></video>
+      </div>
+      <div class="hero-float"><img src="assets/chart.png" alt="RSI chart with drawn trendline"></div>
+    </div>
+  </div>
+</header>
 
-      <section class="section" id="scan">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <div class="kicker">01 / Market wall</div>
-              <h2>Scroll the scanner like a trading terminal.</h2>
-            </div>
-            <p>
-              The grid stays dense on purpose: every tile is a symbol, every line is RSI movement,
-              and the trader can scan dozens of pairs without opening another page.
-            </p>
-          </div>
-          <div class="media-card"><img src="assets/clip-grid-scroll.gif" alt="Scrolling the RSI grid"></div>
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><b>300+</b><span>Binance pairs</span></div>
+    <div class="stat"><b>15</b><span>timeframes</span></div>
+    <div class="stat"><b>server</b><span>side RSI engine</span></div>
+    <div class="stat"><b>&lt;10s</b><span>live refresh</span></div>
+  </div>
+</div>
+
+<section id="reel">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Demo reel</span>
+      <h2>The real tool, in motion</h2>
+      <p>Five recordings from the live, logged-in product on the Terracotta theme. No mockups, no demo data.</p>
+    </div>
+
+    <div class="scene reveal">
+      <div class="scopy">
+        <div class="num">01 / SCAN</div>
+        <h3>The market wall</h3>
+        <p>One tile per symbol, each with a live RSI sparkline. Scroll hundreds of pairs and read where momentum
+          is stretching in a single pass.</p>
+        <ul><li>Market-cap ranked</li><li>Live sparklines</li><li>Progressive fill</li></ul>
+      </div>
+      <div class="frame">
+        <div class="bar"><span class="tl" style="background:#e05a4d"></span><span class="tl" style="background:#e0a23c"></span><span class="tl" style="background:#3cc98a"></span><span class="url">/ tool</span></div>
+        <video poster="assets/hero-tool.png" autoplay muted loop playsinline><source src="assets/clip-grid.webm" type="video/webm"><source src="assets/clip-grid.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="scene rev reveal">
+      <div class="frame">
+        <div class="bar"><span class="tl" style="background:#e05a4d"></span><span class="tl" style="background:#e0a23c"></span><span class="tl" style="background:#3cc98a"></span><span class="url">/ tool</span></div>
+        <video poster="assets/hero-tool.png" autoplay muted loop playsinline><source src="assets/clip-filters.webm" type="video/webm"><source src="assets/clip-filters.mp4" type="video/mp4"></video>
+      </div>
+      <div class="scopy">
+        <div class="num">02 / FILTER</div>
+        <h3>Isolate the extremes</h3>
+        <p>Dim the whole wall down to only the oversold or overbought names in one tap. The handful of pairs
+          that matter light up while everything else fades back.</p>
+        <ul><li>Oversold / overbought</li><li>Instant, no reflow</li><li>15 timeframes</li></ul>
+      </div>
+    </div>
+
+    <div class="scene reveal">
+      <div class="scopy">
+        <div class="num">03 / DRILL IN</div>
+        <h3>Search straight into the chart</h3>
+        <p>Type a ticker, press enter, and jump from the wall into a full RSI chart with price history and a live
+          reading, without leaving the keyboard.</p>
+        <ul><li>Instant search</li><li>Live RSI value</li><li>Prefetched charts</li></ul>
+      </div>
+      <div class="frame">
+        <div class="bar"><span class="tl" style="background:#e05a4d"></span><span class="tl" style="background:#e0a23c"></span><span class="tl" style="background:#3cc98a"></span><span class="url">/ tool</span></div>
+        <video poster="assets/hero-tool.png" autoplay muted loop playsinline><source src="assets/clip-search.webm" type="video/webm"><source src="assets/clip-search.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="scene rev reveal">
+      <div class="frame">
+        <div class="bar"><span class="tl" style="background:#e05a4d"></span><span class="tl" style="background:#e0a23c"></span><span class="tl" style="background:#3cc98a"></span><span class="url">/ tool</span></div>
+        <video poster="assets/chart.png" autoplay muted loop playsinline><source src="assets/clip-draw.webm" type="video/webm"><source src="assets/clip-draw.mp4" type="video/mp4"></video>
+      </div>
+      <div class="scopy">
+        <div class="num">04 / MARK IT</div>
+        <h3>Draw the setup</h3>
+        <p>A custom canvas charting engine, not a library. Draw trendlines, switch colours, undo and redo, clear,
+          and export the chart to PNG.</p>
+        <ul><li>Custom canvas</li><li>Trendlines + colours</li><li>PNG export</li></ul>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:24px">
+      <span class="eyebrow">05 / Anywhere</span>
+      <h2>The same scanner on a phone</h2>
+      <p>Fully responsive down to a two-column wall, with the timeframe strip, search, filters and live status intact.</p>
+    </div>
+    <div class="phones">
+      <div class="phone reveal"><video poster="assets/mobile.png" autoplay muted loop playsinline><source src="assets/clip-mobile.webm" type="video/webm"><source src="assets/clip-mobile.mp4" type="video/mp4"></video></div>
+      <div class="reveal">
+        <div class="cards" style="grid-template-columns:1fr">
+          <div class="card"><h4>Nothing to install</h4><p>A responsive PWA shell with a fast app-shell cache and a graceful offline screen. Add it to the home screen and it behaves like an app.</p></div>
+          <div class="card"><h4>Tiny payloads</h4><p>The browser reads compact pre-computed snapshots, so the wall stays fast even on mobile data.</p></div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section class="section" id="filters">
-        <div class="shell feature">
-          <div class="copy">
-            <div class="kicker">02 / Timeframe pressure</div>
-            <h3>Move through market context fast.</h3>
-            <p>
-              Timeframes are one tap away. Oversold and overbought filters dim the noise
-              so the extreme setups surface immediately.
-            </p>
-            <div class="chips">
-              <span class="chip">15m</span>
-              <span class="chip">1h</span>
-              <span class="chip">4h</span>
-              <span class="chip">oversold</span>
-              <span class="chip">overbought</span>
-            </div>
-          </div>
-          <div class="media-card"><img src="assets/clip-timeframes-filters.gif" alt="Switching timeframes and filters"></div>
-        </div>
-      </section>
+<section id="system">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">System</span>
+      <h2>One engine, many screens</h2>
+      <p>The core design choice is centralization. The server owns market polling and RSI math, then every visitor
+        reads a small warm snapshot. It scales with a cache, not with user count.</p>
+    </div>
+    <div class="reveal">
+      <div class="flow">
+        <div class="node key"><b>Binance API</b><span>public spot candles</span></div>
+        <div class="arw">&#8594;</div>
+        <div class="node"><b>Market engine</b><span>RSI, Wilder smoothing</span></div>
+        <div class="arw">&#8594;</div>
+        <div class="node"><b>Warm cache</b><span>snapshots at candle close</span></div>
+        <div class="arw">&#8594;</div>
+        <div class="node key"><b>Scanner grid</b><span>+ chart &amp; drawing</span></div>
+      </div>
+      <div class="support">
+        <div class="node"><b>Supabase / Postgres</b><span>auth, JWT sessions, synced user settings</span></div>
+        <div class="node"><b>Paddle billing</b><span>subscriptions, self-healing access reconciliation</span></div>
+      </div>
+      <p class="arch-note">A single always-on Next.js server, no serverless cold starts. Webhooks can be missed,
+        so subscription state reconciles against Paddle on read: a paying customer is never locked out by a dropped event.</p>
+    </div>
+  </div>
+</section>
 
-      <section class="section">
-        <div class="shell feature reverse">
-          <div class="media-card"><img src="assets/clip-search-chart.gif" alt="Searching a symbol and opening chart"></div>
-          <div class="copy">
-            <div class="kicker">03 / Search to chart</div>
-            <h3>Type a ticker. Open the setup.</h3>
-            <p>
-              Search is not just filtering text. Pressing enter opens the best matching coin
-              straight into the full RSI chart workflow.
-            </p>
-            <div class="chips">
-              <span class="chip">BTC</span>
-              <span class="chip">keyboard flow</span>
-              <span class="chip">chart modal</span>
-            </div>
-          </div>
-        </div>
-      </section>
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Built surface</span>
+      <h2>What is under the hood</h2>
+    </div>
+    <div class="cards reveal">
+      <div class="card"><div class="ic">&#9679;</div><h4>Live RSI on 300+ pairs</h4><p>Market-cap ranked Binance spot pairs, computed server-side so the client never hits an exchange rate limit.</p></div>
+      <div class="card"><div class="ic">&#9636;</div><h4>Custom charting engine</h4><p>A hand-built canvas chart with RSI, moving average, zoom, pan, drawing tools and PNG export. No charting library.</p></div>
+      <div class="card"><div class="ic">&#9889;</div><h4>Warm-cache performance</h4><p>Pre-computed snapshots aligned to candle closes make page loads instant and keep payloads tiny.</p></div>
+      <div class="card"><div class="ic">&#128274;</div><h4>Full SaaS layer</h4><p>Auth with email OTP, JWT sessions, protected access, Paddle billing, a settings-sync layer and a PWA shell.</p></div>
+    </div>
+  </div>
+</section>
 
-      <section class="section" id="chart">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <div class="kicker">04 / Chart lab</div>
-              <h2>Draw directly on the RSI pane.</h2>
-            </div>
-            <p>
-              The chart modal includes zoom, pan, trendlines, color selection, undo, redo,
-              clear, and PNG export so a trader can mark and save a setup.
-            </p>
-          </div>
-          <div class="media-card"><img src="assets/clip-chart-drawing.gif" alt="Drawing on the RSI chart"></div>
-        </div>
-      </section>
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Stack</span>
+      <h2>Built with</h2>
+    </div>
+    <div class="stack reveal">
+      <span class="tech">Next.js 16</span><span class="tech">React</span><span class="tech">TypeScript</span>
+      <span class="tech">Tailwind CSS v4</span><span class="tech">shadcn/ui</span><span class="tech">Supabase · Postgres</span>
+      <span class="tech">Paddle</span><span class="tech">JWT</span><span class="tech">Canvas</span>
+      <span class="tech">Vitest</span><span class="tech">Playwright</span><span class="tech">PWA</span>
+    </div>
+  </div>
+</section>
 
-      <section class="section" id="mobile">
-        <div class="shell phone-wrap">
-          <div class="phone"><img src="assets/clip-mobile-scroll.gif" alt="Mobile RSI Screener scrolling"></div>
-          <div class="copy">
-            <div class="kicker">05 / Mobile scanner</div>
-            <h3>The same grid in your hand.</h3>
-            <p>
-              The tool compresses into a phone layout with timeframe controls, search,
-              live status, filters, and a two-column market grid.
-            </p>
-            <div class="chips">
-              <span class="chip">PWA</span>
-              <span class="chip">touch-first</span>
-              <span class="chip">two-column grid</span>
-            </div>
-          </div>
-        </div>
-      </section>
+<footer>
+  <div class="wrap">
+    <h2>Private codebase. Public craft.</h2>
+    <p>This showcase documents the product surface, interaction flow and architecture. The application source is kept private.</p>
+    <a class="btn primary" href="https://github.com/Hamad12-cmd/rsiscreener" target="_blank" rel="noopener">View the repository &#8599;</a>
+    <p class="fnote">RSI Screener · built by Hamad</p>
+  </div>
+</footer>
 
-      <section class="section" id="architecture">
-        <div class="shell">
-          <div class="section-head">
-            <div>
-              <div class="kicker">Built end to end</div>
-              <h2>One market engine feeds every screen.</h2>
-            </div>
-            <p>
-              Browsers do not hit Binance for every tile. The server computes and keeps
-              RSI snapshots warm, then the UI reads compact market state.
-            </p>
-          </div>
-
-          <div class="architecture" aria-label="System architecture">
-            <div class="node"><strong>Binance candles</strong><span>Public market data for tracked spot pairs.</span></div>
-            <div class="node"><strong>Market engine</strong><span>Polls, computes RSI, aligns refreshes to candle closes.</span></div>
-            <div class="node"><strong>Warm cache</strong><span>Ready snapshots for grid, filters, search, and charts.</span></div>
-            <div class="node"><strong>Supabase + Paddle</strong><span>Users, sessions, settings, subscriptions, billing access.</span></div>
-            <div class="node"><strong>Tool UI</strong><span>Desktop grid, chart modal, drawing tools, mobile PWA.</span></div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="shell">Private source. Public product showcase. Built with Next.js, TypeScript, Supabase, Paddle, and Playwright.</div>
-    </footer>
-  </body>
+<script>
+  const io = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const vio = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ const v=e.target; if(e.isIntersecting){ v.play&&v.play().catch(()=>{}); } });
+  },{threshold:.25});
+  document.querySelectorAll('video').forEach(v=>vio.observe(v));
+</script>
+</body>
 </html>
