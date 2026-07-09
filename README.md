@@ -1,92 +1,75 @@
 # RSI Screener
 
-Private SaaS product showcase. Source code is not published in this repository.
-
 <p align="center">
-  <img src="assets/hero-tool.png" alt="RSI Screener Terracotta dashboard" width="100%">
+  <a href="https://hamad12-cmd.github.io/rsiscreener/">
+    <img src="assets/hero-tool.png" alt="RSI Screener Terracotta dashboard" width="100%">
+  </a>
 </p>
 
-## What It Is
-
-RSI Screener is a logged-in market scanner for Binance spot pairs. It gives a
-trader one dense view of live RSI movement instead of forcing them to open charts
-one by one.
-
-## 1. Market Grid Scrolling
-
-The main surface is the grid: hundreds of symbols, each with its own RSI mini
-chart, designed for scanning quickly.
+<h3 align="center">A live RSI command center for Binance spot markets.</h3>
 
 <p align="center">
-  <img src="assets/clip-grid-scroll.gif" alt="Scrolling through the RSI Screener market grid" width="100%">
+  <a href="https://hamad12-cmd.github.io/rsiscreener/"><strong>Open the visual showcase</strong></a>
+  &nbsp;|&nbsp;
+  private source, public product preview
 </p>
 
-## 2. Timeframes And Filters
+---
 
-Switch between short-term and higher-timeframe RSI, then isolate oversold or
-overbought conditions directly from the toolbar.
-
-<p align="center">
-  <img src="assets/clip-timeframes-filters.gif" alt="Switching timeframes and RSI filters" width="100%">
-</p>
-
-## 3. Search To Chart
-
-Search a symbol and press enter to jump from the grid into the full chart view.
+## Watch The Tool Work
 
 <p align="center">
-  <img src="assets/clip-search-chart.gif" alt="Searching BTC and opening the RSI chart" width="100%">
-</p>
-
-## 4. Chart Drawing Tools
-
-The chart view supports drawing trendlines, choosing colors, undo/redo, clearing
-drawings, and exporting the setup as a PNG.
-
-<p align="center">
-  <img src="assets/clip-chart-drawing.gif" alt="Drawing a trendline on the RSI chart" width="100%">
+  <strong>Scan the market wall</strong><br>
+  Dense Terracotta grid, hundreds of symbols, RSI movement per tile.
 </p>
 
 <p align="center">
-  <img src="assets/chart-tool.png" alt="RSI chart modal with drawing toolbar" width="100%">
+  <img src="assets/clip-grid-scroll.gif" alt="Scrolling through the market grid" width="100%">
 </p>
-
-## 5. Mobile Scanner
-
-The same tool compresses into a mobile layout with timeframe controls, search,
-filters, live status, and a two-column tile grid.
 
 <p align="center">
-  <img src="assets/clip-mobile-scroll.gif" alt="Scrolling the mobile RSI Screener tool" width="390">
+  <strong>Switch timeframes and isolate extremes</strong><br>
+  Move from 15m to 4h and filter oversold or overbought setups instantly.
 </p>
 
-## What I Built
+<p align="center">
+  <img src="assets/clip-timeframes-filters.gif" alt="Switching timeframes and filters" width="100%">
+</p>
 
-- Server-side RSI engine for Binance spot market data
-- Warm snapshot loading for the screener grid
-- Timeframe switching across the tool
-- Oversold and overbought filtering
-- Symbol search and chart-opening flow
-- RSI chart modal with drawing and export tools
-- Email/password auth, JWT sessions, user settings, Paddle billing, and protected access
-- Responsive desktop and mobile tool surfaces
+<p align="center">
+  <strong>Search straight into a chart</strong><br>
+  Type a symbol, press enter, and open the RSI chart workflow.
+</p>
 
-## Architecture
+<p align="center">
+  <img src="assets/clip-search-chart.gif" alt="Searching and opening a chart" width="100%">
+</p>
 
-```mermaid
-flowchart LR
-  Binance[Binance candles] --> Engine[Market engine]
-  Engine --> RSI[RSI computation]
-  RSI --> Cache[Warm snapshot cache]
-  Cache --> Grid[Logged-in screener grid]
-  Grid --> Chart[Chart + drawing tools]
+<p align="center">
+  <strong>Draw, review, export</strong><br>
+  Trendlines, colors, undo, redo, clear, and PNG export live inside the chart modal.
+</p>
 
-  Supabase[(Supabase Postgres)] --> Auth[Auth + user settings]
-  Auth --> Grid
+<p align="center">
+  <img src="assets/clip-chart-drawing.gif" alt="Drawing on the RSI chart" width="100%">
+</p>
 
-  Paddle[Paddle billing] --> Access[Subscription access]
-  Access --> Auth
-```
+<p align="center">
+  <strong>Mobile scanner</strong><br>
+  The same workflow compressed into a phone-sized trading surface.
+</p>
+
+<p align="center">
+  <img src="assets/clip-mobile-scroll.gif" alt="Mobile RSI Screener scrolling" width="390">
+</p>
+
+---
+
+## Built Surface
+
+Server-side market engine. Warm RSI snapshots. 300+ Binance spot symbols. Timeframe switching.
+Oversold and overbought filters. Search-to-chart flow. Drawing tools. Auth. User settings.
+Paddle billing. Responsive PWA shell.
 
 ## Stack
 
