@@ -1,75 +1,68 @@
 # RSI Screener
 
-Public showcase for a private production SaaS.
+Private SaaS product showcase. Source code is not published in this repository.
 
 <p align="center">
-  <img src="assets/readme-hero.png" alt="RSI Screener landing page" width="100%">
+  <img src="assets/hero-tool.png" alt="RSI Screener logged-in market dashboard" width="100%">
 </p>
 
-## What This Is
+## The Product
 
-RSI Screener is a crypto market scanner for Binance spot pairs. It turns hundreds
-of RSI readings into one visual grid, so a trader can scan the whole market
-instead of opening chart after chart.
-
-The source code is private. This repository shows the product, the workflow, and
-the engineering shape behind it.
-
-## Desktop Scanner
+RSI Screener is a logged-in crypto market tool for scanning Binance spot pairs by
+RSI. The main screen is a dense live grid: each tile is a pair, each line is its
+RSI movement, and the toolbar lets you move between timeframes, search symbols,
+and isolate oversold or overbought conditions.
 
 <p align="center">
-  <img src="assets/desktop-flow.gif" alt="RSI Screener desktop scanner animation" width="100%">
+  <img src="assets/tool-flow.webp" alt="RSI Screener logged-in workflow animation" width="100%">
 </p>
+
+## Chart Workflow
+
+The full tool opens a coin into an RSI chart view with zoom/pan, drawing tools,
+undo/redo, color selection, and PNG export.
 
 <p align="center">
-  <img src="assets/readme-desktop.png" alt="RSI Screener desktop demo" width="100%">
+  <img src="assets/chart-tool.png" alt="RSI chart modal with drawing tools" width="100%">
 </p>
 
-## Mobile
+## Mobile Tool
+
+The same scanner works as a compact mobile interface with the timeframe row,
+search, filters, live status, and full tile grid.
 
 <p align="center">
-  <img src="assets/readme-mobile.png" alt="RSI Screener mobile demo" width="360">
+  <img src="assets/mobile-tool.png" alt="RSI Screener logged-in mobile tool" width="390">
 </p>
 
-## Product Scope
+## What I Built
 
-- 300+ Binance spot pairs in one grid
-- RSI mini-chart per symbol
-- Oversold and overbought filters
-- Sample and live demo modes
-- Private full tool with 15 timeframes
-- Chart modal with zoom, pan, drawing tools, undo/redo, and PNG export
-- Email OTP auth, JWT sessions, user settings, Paddle billing, and protected access
+- Server-side RSI engine for Binance spot market data
+- Dense scanner grid for 300+ symbols
+- Timeframe switching and warm snapshot loading
+- Oversold / overbought filters
+- Symbol search and chart opening flow
+- RSI chart modal with drawing and export tools
+- Email/password auth, JWT sessions, user settings, Paddle billing, and protected access
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-  Binance[Binance public candles] --> Engine[Server-side market engine]
-  Engine --> Cache[Warm RSI cache]
-  Cache --> Grid[Live screener grid]
-  Grid --> Chart[Chart and drawing workflow]
+  Binance[Binance candles] --> Engine[Market engine]
+  Engine --> RSI[RSI computation]
+  RSI --> Cache[Warm snapshot cache]
+  Cache --> Grid[Logged-in screener grid]
+  Grid --> Chart[Chart + drawing tools]
 
-  Supabase[(Supabase Postgres)] --> Auth[Email OTP and JWT sessions]
+  Supabase[(Supabase Postgres)] --> Auth[Auth + user settings]
   Auth --> Grid
 
-  Paddle[Paddle checkout] --> Webhooks[Webhook handlers]
-  Webhooks --> Supabase
-  Paddle --> Reconcile[Subscription reconciliation]
-  Reconcile --> Supabase
+  Paddle[Paddle billing] --> Access[Subscription access]
+  Access --> Auth
 ```
-
-The main backend decision is simple: browsers do not call Binance directly for
-every tile. The server computes market state once, keeps it warm, and the UI
-reads small snapshots.
 
 ## Stack
 
 `Next.js 16` &middot; `React` &middot; `TypeScript` &middot; `Tailwind CSS v4` &middot; `Supabase`
 &middot; `Paddle` &middot; `JWT` &middot; `Vitest` &middot; `PWA` &middot; `Playwright`
-
-## Pricing Surface
-
-<p align="center">
-  <img src="assets/readme-pricing.png" alt="RSI Screener pricing page" width="100%">
-</p>
