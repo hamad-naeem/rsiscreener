@@ -8,20 +8,13 @@ You pressed the crate. This is what's inside: a production SaaS that computes RS
 
 ## A tour in three frames
 
-**01 · Isolate the extremes**
-One tap dims the entire wall to only the overbought or oversold names. The pairs that matter stay lit; everything else fades back.
+<p align="center">
+  <a href="assets/extremes.png"><img src="assets/tour-01.png" width="32.8%" alt="Frame 01, isolate the extremes: overbought filter lights a handful of tiles while the wall dims back"></a>
+  <a href="assets/chart.png"><img src="assets/tour-02.png" width="32.8%" alt="Frame 02, search into the chart: BTC/USDT RSI chart with live reading"></a>
+  <a href="assets/drawing.png"><img src="assets/tour-03.png" width="32.8%" alt="Frame 03, mark the setup: two trendlines drawn with the toolbar active"></a>
+</p>
 
-<img src="assets/extremes.png" alt="Overbought filter active: a handful of lit tiles against the dimmed wall" width="100%">
-
-**02 · Search straight into the chart**
-Type a ticker, press enter, and land in a full RSI chart: price history, moving average, thresholds, and a live reading in the header.
-
-<img src="assets/chart.png" alt="BTC/USDT chart open over the blurred wall, live RSI reading in the header" width="100%">
-
-**03 · Mark the setup**
-A custom canvas charting engine, not a library. Draw trendlines, switch colours, undo, redo, clear, and export the chart to PNG.
-
-<img src="assets/drawing.png" alt="Two trendlines drawn on the BTC/USDT chart with the drawing toolbar active" width="100%">
+One tap isolates the overbought or oversold names while the rest of the wall dims back. Search lands straight in a full RSI chart with a live reading. And the hand-built canvas engine draws trendlines with undo, redo and PNG export. Press a frame for the full-resolution capture.
 
 <br>
 
