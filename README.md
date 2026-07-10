@@ -1,27 +1,27 @@
 <img src="assets/title.svg" width="100%" alt="Inside the crate: RSI Screener, live RSI for the entire Binance spot market. 300+ pairs, 15 timeframes, refresh under 10 seconds, source private.">
 
-<img src="assets/hero-tool.png" alt="RSI Screener dashboard: the live 300-tile market wall" width="100%">
+<img src="assets/wall.png" alt="RSI Screener: the live market wall, 300+ pairs with RSI sparklines on the 4h timeframe" width="100%">
 
-You pressed the crate. This is what's inside: a production SaaS that computes RSI for **300+ Binance spot pairs across 15 timeframes** on the server and streams it to one dense live wall. Everything below is the real logged-in product, recorded live. The source is private; this page shows the product and how it's built.
+You pressed the crate. This is what's inside: a production SaaS that computes RSI for **300+ Binance spot pairs across 15 timeframes** on the server and streams it to one dense live wall. Every frame below is the real logged-in product, captured live. The source is private; this page shows the product and how it's built.
 
 <br>
 
-## Watch it work
+## A tour in three frames
 
 **01 · Isolate the extremes**
-Dim the entire wall to only the oversold or overbought names in one tap. The handful of pairs that matter light up while everything else fades back.
+One tap dims the entire wall to only the overbought or oversold names. The pairs that matter stay lit; everything else fades back.
 
-<img src="assets/clip-filters.webp" alt="Filtering the grid to the oversold coins" width="100%">
+<img src="assets/extremes.png" alt="Overbought filter active: a handful of lit tiles against the dimmed wall" width="100%">
 
 **02 · Search straight into the chart**
-Type a ticker, press enter, and jump from the market wall into a full RSI chart with price history and a live reading, without leaving the keyboard.
+Type a ticker, press enter, and land in a full RSI chart: price history, moving average, thresholds, and a live reading in the header.
 
-<img src="assets/clip-search.webp" alt="Searching a coin and opening its chart" width="100%">
+<img src="assets/chart.png" alt="BTC/USDT chart open over the blurred wall, live RSI reading in the header" width="100%">
 
 **03 · Mark the setup**
 A custom canvas charting engine, not a library. Draw trendlines, switch colours, undo, redo, clear, and export the chart to PNG.
 
-<img src="assets/clip-draw.webp" alt="Drawing trendlines on the RSI chart" width="100%">
+<img src="assets/drawing.png" alt="Two trendlines drawn on the BTC/USDT chart with the drawing toolbar active" width="100%">
 
 <br>
 
