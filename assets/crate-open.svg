@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" fill="none" role="img" aria-label="The crate from the profile, opened: glowing dots rise out. RSI Screener, live RSI for the entire Binance spot market. 300+ pairs, 15 timeframes, refresh under 10 seconds, source private.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" fill="none" role="img" aria-label="The crate from the profile, opened: glowing dots rise out. RSI Screener, live RSI for the entire Binance spot market.">
 <style>
 .fade{opacity:0;animation:fadein .7s ease-out forwards}
 .r0{animation-delay:.4s}.r1{animation-delay:.55s}.r2{animation-delay:.7s}.r3{animation-delay:.85s}
@@ -46,26 +46,4 @@
 <!-- title floats beside it, no box -->
 <text class="fade t1" x="228" y="82" font-family="Consolas, Menlo, monospace" font-size="22" letter-spacing="6" fill="#f4f3ee">RSI SCREENER</text>
 <text class="fade t2" x="230" y="108" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif" font-size="12.5" fill="#b1ada1">live RSI for the entire Binance spot market, at one glance</text>
-
-<g class="fade r0">
-<text x="560" y="44" font-family="Consolas, Menlo, monospace" font-size="13" fill="#7d756c">PAIRS</text>
-<line x1="611.5" y1="40" x2="792.4" y2="40" stroke="#3a2f27" stroke-width="1.5" stroke-dasharray="1.5 5"/>
-<text x="836" y="44" text-anchor="end" font-family="Consolas, Menlo, monospace" font-size="13" fill="#e0855c">300+</text>
-</g>
-<g class="fade r1">
-<text x="560" y="70" font-family="Consolas, Menlo, monospace" font-size="13" fill="#7d756c">TIMEFRAMES</text>
-<line x1="651" y1="66" x2="808.2" y2="66" stroke="#3a2f27" stroke-width="1.5" stroke-dasharray="1.5 5"/>
-<text x="836" y="70" text-anchor="end" font-family="Consolas, Menlo, monospace" font-size="13" fill="#e0855c">15</text>
-</g>
-<g class="fade r2">
-<text x="560" y="96" font-family="Consolas, Menlo, monospace" font-size="13" fill="#7d756c">REFRESH</text>
-<line x1="627.3" y1="92" x2="752.9" y2="92" stroke="#3a2f27" stroke-width="1.5" stroke-dasharray="1.5 5"/>
-<text x="836" y="96" text-anchor="end" font-family="Consolas, Menlo, monospace" font-size="13" fill="#e0855c">UNDER 10S</text>
-</g>
-<g class="fade r3">
-<text x="560" y="122" font-family="Consolas, Menlo, monospace" font-size="13" fill="#7d756c">SOURCE</text>
-<line x1="619.4" y1="118" x2="768.7" y2="118" stroke="#3a2f27" stroke-width="1.5" stroke-dasharray="1.5 5"/>
-<text x="836" y="122" text-anchor="end" font-family="Consolas, Menlo, monospace" font-size="13" fill="#e0855c">PRIVATE</text>
-</g>
-
 </svg>
