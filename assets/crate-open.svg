@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 170" fill="none" role="img" aria-label="The crate from the profile, opened: glowing dots rise out. RSI Screener, live RSI for the entire Binance spot market.">
+<style>
+.fade{opacity:0;animation:fadein .7s ease-out forwards}
+.r0{animation-delay:.4s}.r1{animation-delay:.55s}.r2{animation-delay:.7s}.r3{animation-delay:.85s}
+.t1{animation-delay:.1s}.t2{animation-delay:.25s}
+@keyframes fadein{to{opacity:1}}
+.heat{animation:heat 3s ease-in-out infinite alternate}
+@keyframes heat{from{opacity:.5}to{opacity:1}}
+.mote{opacity:0;animation:rise 3.2s ease-out infinite}
+@keyframes rise{0%{opacity:0;transform:translateY(0)}12%{opacity:.9}70%{opacity:.5}100%{opacity:0;transform:translateY(-52px)}}
+</style>
+
+<defs>
+  <radialGradient id="spill" cx="50%" cy="100%" r="90%">
+    <stop offset="0%" stop-color="#ff7a3d" stop-opacity=".16"/>
+    <stop offset="100%" stop-color="#ff7a3d" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<!-- ground -->
+<line x1="44" y1="142" x2="836" y2="142" stroke="#241c17" stroke-dasharray="2 7"/>
+
+<!-- light spilling out of the opening -->
+<ellipse class="heat" cx="112" cy="96" rx="86" ry="62" fill="url(#spill)"/>
+
+<circle class="mote m0" cx="94" cy="94" r="4" fill="#ffa06b" style="animation-delay:0s"/>
+<circle class="mote m1" cx="116" cy="94" r="3" fill="#ffa06b" style="animation-delay:0.9s"/>
+<circle class="mote m2" cx="134" cy="94" r="4.5" fill="#ffa06b" style="animation-delay:1.7s"/>
+<circle class="mote m3" cx="108" cy="94" r="2.6" fill="#ffa06b" style="animation-delay:2.4s"/>
+
+<!-- crate, parked and opened -->
+<g>
+  <rect x="64" y="96" width="96" height="34" rx="3" fill="#241711" stroke="#3a2f27"/>
+  <text x="112" y="118" text-anchor="middle" font-family="Consolas, Menlo, monospace" font-size="9.5" letter-spacing="1.5" fill="#e0855c">RSI SCREENER</text>
+  <!-- lid, hinged open on the right -->
+  <rect x="156" y="94" width="69.12" height="7" rx="2" fill="#241711" stroke="#3a2f27" transform="rotate(-34 156 94)"/>
+  <!-- pac-dot wheels, at rest -->
+  <g transform="translate(88 135.5)">
+    <circle r="6.5" stroke="#c15f3c" stroke-width="2.5" stroke-dasharray="5 5.4" fill="none"/>
+  </g>
+  <g transform="translate(136 135.5)">
+    <circle r="6.5" stroke="#c15f3c" stroke-width="2.5" stroke-dasharray="5 5.4" fill="none"/>
+  </g>
+</g>
+
+<!-- title floats beside it, no box -->
+<text class="fade t1" x="228" y="82" font-family="Consolas, Menlo, monospace" font-size="22" letter-spacing="6" fill="#f4f3ee">RSI SCREENER</text>
+<text class="fade t2" x="230" y="108" font-family="Segoe UI, Ubuntu, Helvetica, Arial, sans-serif" font-size="12.5" fill="#b1ada1">live RSI for the entire Binance spot market, at one glance</text>
+</svg>
