@@ -24,10 +24,12 @@
 
 **The server does the market work once. Every visitor reads a warm snapshot.**
 
-- A background engine polls Binance and recomputes RSI (Wilder's, 14-period) the moment each candle closes
+- A background engine polls Binance and recomputes RSI (Wilder's, 14-period) the moment each candle closes, crypto and tokenized stocks both
 - Results sit in an in-memory cache as compact per-timeframe snapshots; every response is tiny JSON
+- Every snapshot is scanned for setups (bullish/bearish divergence, RSI extreme exits, trend + volume) and badged on the wall
 - The wall paints progressively, never a spinner; filter and search run client-side, so they're instant
-- The chart is a hand-built canvas engine: zoom, pan, trendlines, undo/redo, PNG export, live while open
+- Charts are synced price/volume/RSI panes with a hand-built drawing layer: trendlines, undo/redo, PNG export, live while open
+- Seven tunable indicators (two MAs, Bollinger, Supertrend, rolling VWAP, MACD, Stochastic RSI) computed in the browser, so tuning redraws instantly
 - JWT sessions with email OTP; subscription access self-heals against the billing API on every read
 - Rate limits, per-user locks, strict validation; Vitest covers the RSI math and webhook signatures
 
@@ -41,7 +43,7 @@
 
 <div align="center">
 
-<samp>Next.js 16 · React · TypeScript · Tailwind v4 · shadcn/ui · Supabase · Postgres · JWT · Vitest · PWA</samp>
+<samp>Next.js 16 · React · TypeScript · Tailwind v4 · shadcn/ui · Lightweight Charts · Supabase · Postgres · JWT · Paddle · Vitest · PWA</samp>
 
 <sub>Built by <a href="https://github.com/hamad-naeem">Hamad Naeem</a> with AI-assisted development. This repository documents the product without exposing the private source.</sub>
 
