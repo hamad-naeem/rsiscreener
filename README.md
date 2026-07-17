@@ -1,19 +1,27 @@
 <img src="assets/crate-open.svg" width="100%" alt="RSI Screener: live RSI for the entire Binance spot market.">
 
-<img src="assets/wall.png" alt="The live market wall: 300+ pairs with RSI sparklines on the 4h timeframe" width="100%">
+<div align="center">
 
-RSI Screener is a production SaaS that computes RSI for 300+ Binance spot pairs, crypto and tokenized stocks, across 15 timeframes, about 4,500 live series, and serves them as one grid that updates within seconds of each candle close. The source is private. This page documents the product and its design; every capture below is the logged-in product.
+<a href="https://rsiscreener.me"><samp><b>rsiscreener.me</b></samp></a> · <samp>live in production · free plan, no card required</samp>
+
+</div>
+
+<br>
+
+<img src="assets/wall.png" alt="The live market wall: 300 pairs with RSI sparklines on the 4h timeframe" width="100%">
+
+RSI Screener is a production SaaS, live at [rsiscreener.me](https://rsiscreener.me). It computes RSI for 300+ Binance spot pairs, crypto and tokenized stocks, across 15 timeframes, about 4,500 live series, and serves them as one grid that updates within seconds of each candle close. Every account starts on a free plan; Pro unlocks the full universe and the analysis features. The source is private. This page documents the product and its design; every capture below is the logged-in product.
 
 <br>
 
 <p align="center">
-  <a href="assets/extremes.png"><img src="assets/tour-01.png" width="32.8%" alt="Overbought filter: a handful of lit tiles against the dimmed wall"></a>
-  <a href="assets/chart.png"><img src="assets/tour-02.png" width="32.8%" alt="BTC/USDT RSI chart with live reading"></a>
-  <a href="assets/drawing.png"><img src="assets/tour-03.png" width="32.8%" alt="Two trendlines drawn on the chart, drawing toolbar active"></a>
+  <a href="assets/extremes.png"><img src="assets/extremes.png" width="32.8%" alt="Oversold filter: matching tiles lit against the dimmed wall, match count in the corner"></a>
+  <a href="assets/chart.png"><img src="assets/chart.png" width="32.8%" alt="BTC/USDT chart: candles with EMA 50/200, volume, and Stochastic RSI pane"></a>
+  <a href="assets/futures.png"><img src="assets/futures.png" width="32.8%" alt="Futures metrics panel: funding with history, open interest, taker flow, long/short ratio, basis"></a>
 </p>
 
 <div align="center">
-<sub>Filtering, search-to-chart, and drawing tools. Click a frame for the full-resolution capture.</sub>
+<sub>Filtering, charting, and live derivatives context. Click a frame for the full-resolution capture.</sub>
 </div>
 
 <br>
@@ -28,6 +36,8 @@ The chart is built on TradingView's Lightweight Charts: synced price, volume, an
 
 A futures panel adds live derivatives context for the open coin, pulled from Binance's public USDT-M futures API: funding rate and its recent history, open interest and 24-hour change, taker buy/sell flow, long/short account ratio, and basis. Calls are proxied through the server (shared with the same rate-limit guards as the spot engine), cached briefly, and gated on the perpetual existing, so a symbol with no futures market degrades cleanly instead of erroring.
 
+The plans are enforced where it matters. Free accounts get the top 50 pairs with RSI and Stochastic RSI; Pro gets all 300 pairs, tokenized stocks, every indicator, the futures panel, setup context, and coin comparison. The API applies the caps itself — the interface only reflects them, so a hand-crafted request cannot reach past its tier. Account preferences (timeframe, thresholds, theme) live server-side and ride along with the page render, so a second device opens exactly where the first left off, with no settings flash.
+
 Auth is JWT (HS256), with email OTP for registration and password reset. Subscription state is reconciled against the billing provider's API on read instead of trusting webhook delivery, so a dropped webhook cannot produce incorrect access in either direction.
 
 All routes are rate-limited and validated. Per-user locks serialize the operations where a race could grant or revoke access incorrectly. Vitest covers the RSI math, webhook signature verification, and input validation.
@@ -36,6 +46,16 @@ All routes are rate-limited and validated. Per-user locks serialize the operatio
 
 <samp>binance → engine → warm cache → grid → chart</samp>
 
+</div>
+
+<br>
+
+<p align="center">
+  <a href="assets/mobile.png"><img src="assets/mobile.png" width="30%" alt="The wall on a phone: two-column tile grid with the same filters and search"></a>
+</p>
+
+<div align="center">
+<sub>The same wall on a phone. The grid, chart, and panels are fully responsive.</sub>
 </div>
 
 <br>
