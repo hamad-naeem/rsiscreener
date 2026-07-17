@@ -42,25 +42,7 @@ Auth is JWT (HS256), with email OTP for registration and password reset. Subscri
 
 All routes are rate-limited and validated. Per-user locks serialize the operations where a race could grant or revoke access incorrectly. Vitest covers the RSI math, webhook signature verification, and input validation.
 
-<div align="center">
 
-<samp>binance → engine → warm cache → grid → chart</samp>
-
-</div>
-
-<br>
-
-<p align="center">
-  <a href="assets/mobile.png"><img src="assets/mobile.png" width="30%" alt="The wall on a phone: two-column tile grid with the same filters and search"></a>
-</p>
-
-<div align="center">
-<sub>The same wall on a phone. The grid, chart, and panels are fully responsive.</sub>
-</div>
-
-<br>
-
-<div align="center">
 
 <samp>Next.js 16 · React · TypeScript · Tailwind v4 · shadcn/ui · Lightweight Charts · Supabase · Postgres · JWT · Paddle · Vitest · PWA</samp>
 
