@@ -15,12 +15,12 @@ RSI Screener is a production SaaS, live at [rsiscreener.me](https://rsiscreener.
 <br>
 
 <p align="center">
-  <a href="assets/extremes.png"><img src="assets/extremes.png" width="49.4%" alt="Oversold filter: matching tiles lit against the dimmed wall, match count in the corner"></a>
-  <a href="assets/chart.png"><img src="assets/chart.png" width="49.4%" alt="BTC/USDT chart: candles with EMA 50/200, volume, and Stochastic RSI pane"></a>
+  <a href="assets/extremes.png"><img src="assets/extremes-crop.png" width="49.4%" alt="Oversold filter: matching tiles lit against the dimmed wall, match count in the corner"></a>
+  <a href="assets/chart.png"><img src="assets/chart-crop.png" width="49.4%" alt="BTC/USDT chart: candles with EMA 50/200, volume, and Stochastic RSI pane"></a>
 </p>
 <p align="center">
-  <a href="assets/confluence.png"><img src="assets/confluence.png" width="49.4%" alt="Timeframe confluence panel: RSI across 15m to 1w with per-frame direction and an alignment verdict"></a>
-  <a href="assets/futures.png"><img src="assets/futures.png" width="49.4%" alt="Futures metrics panel: funding with history, open interest, taker flow, long/short ratio, basis"></a>
+  <a href="assets/confluence.png"><img src="assets/confluence-crop.png" width="49.4%" alt="Timeframe confluence panel: RSI across 15m to 1w with per-frame direction and an alignment verdict"></a>
+  <a href="assets/futures.png"><img src="assets/futures-crop.png" width="49.4%" alt="Futures metrics panel: funding with history, open interest, taker flow, long/short ratio, basis"></a>
 </p>
 
 <div align="center">
